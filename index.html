@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technolink | ROHS All-In-One Desktop Series</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --bg-card-hover: rgba(51, 65, 85, 0.8);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.25);
+            --accent-secondary: #818cf8;
+            --badge-bg: rgba(56, 189, 248, 0.12);
+            --badge-text: #38bdf8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --header-bg: rgba(15, 23, 42, 0.85);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.15);
+            --accent-secondary: #4f46e5;
+            --badge-bg: rgba(2, 132, 199, 0.1);
+            --badge-text: #0284c7;
+            --glass-border: rgba(0, 0, 0, 0.06);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --header-bg: rgba(248, 250, 252, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Header / Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--header-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-name span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            padding: 4rem 1.5rem 3rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 1rem;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Controls / Filtering Bar */
+        .controls-section {
+            max-width: 1280px;
+            margin: 0 auto 2.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .controls-card {
+            padding: 1.25rem;
+            border-radius: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1 1 280px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .filter-btn {
+            padding: 0.55rem 1.1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .sort-select {
+            padding: 0.6rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .sort-select:focus {
+            border-color: var(--accent);
+        }
+
+        /* Product Display Grid */
+        .products-grid {
+            max-width: 1280px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .product-card {
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .card-banner {
+            height: 180px;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 70%), var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 1rem;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Dynamic Visual Renderings for AIO Desktop */
+        .aio-illustration {
+            width: 140px;
+            height: 120px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .aio-screen {
+            width: 130px;
+            height: 85px;
+            background: #090d16;
+            border: 3px solid #334155;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            padding: 4px;
+        }
+
+        .aio-wallpaper {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e1b4b, #0284c7);
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aio-wallpaper::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -10px;
+            right: -10px;
+        }
+
+        .aio-stand {
+            width: 26px;
+            height: 20px;
+            background: linear-gradient(to bottom, #64748b, #334155);
+            margin-top: -1px;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+        }
+
+        .aio-base {
+            width: 60px;
+            height: 5px;
+            background: #475569;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .processor-tag {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .specs-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .specs-icon {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+
+        .price-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .price-val {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .price-val span {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .btn-details {
+            padding: 0.6rem 1.1rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px var(--accent-glow);
+            transition: all 0.2s;
+        }
+
+        .btn-details:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* View Toggle / Comparison Table Section */
+        .table-section {
+            max-width: 1280px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .table-wrapper {
+            border-radius: 16px;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+            min-width: 650px;
+        }
+
+        th {
+            background: var(--bg-secondary);
+            padding: 1rem 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .price-td {
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        /* Specs Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            max-width: 550px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+            border-color: var(--accent);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-subtitle {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-spec-item {
+            background: var(--bg-primary);
+            padding: 0.85rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-spec-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        .modal-spec-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-inquire {
+            flex: 1;
+            padding: 0.85rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        /* Mobile Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100%;
+            background: var(--bg-secondary);
+            z-index: 99;
+            padding: 5rem 2rem 2rem;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s ease;
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 1.5rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info {
+            max-width: 350px;
+        }
+
+        .footer-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .controls-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.25rem;
+            }
+
+            .modal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div class="brand-logo">T</div>
+                <div class="brand-name">Techno<span>link</span></div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#specs-table">Comparison</a></li>
+                <li><a href="#contact">Contact Shop</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+                    <span id="themeIcon">☀️</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <ul class="mobile-nav-links">
+            <li><a href="#products" onclick="toggleMenu()">Products</a></li>
+            <li><a href="#specs-table" onclick="toggleMenu()">Specs Table</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">
+            ⚡ Official Shop Pricing • 24" Display Series
+        </div>
+        <h1>ROHS All-In-One <span>Desktop Lineup</span></h1>
+        <p>Sleek space-saving design, vibrant 24-inch displays, and powerful Intel performance tailored for home, office, and business needs.</p>
+    </section>
+
+    <!-- Search & Filter Controls -->
+    <section class="controls-section">
+        <div class="controls-card glass">
+            <div class="search-box">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search CPU generation, specs, RAM...">
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="i9">Core i9</button>
+                <button class="filter-btn" data-filter="i7">Core i7</button>
+                <button class="filter-btn" data-filter="i5">Core i5</button>
+            </div>
+
+            <select class="sort-select" id="sortSelect">
+                <option value="featured">Featured Order</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="price-low">Price: Low to High</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Products Card Grid -->
+    <section class="products-grid" id="products">
+        <!-- Rendered dynamically via JavaScript -->
+    </section>
+
+    <!-- Comparison Table Section -->
+    <section class="table-section" id="specs-table">
+        <div class="section-header">
+            <h2 class="section-title">Specifications Summary</h2>
+        </div>
+        <div class="table-wrapper glass">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model Name</th>
+                        <th>Processor (CPU)</th>
+                        <th>Memory</th>
+                        <th>Storage</th>
+                        <th>Screen Size</th>
+                        <th>Price (THB)</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Table rows populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Specifications Detail Modal -->
+    <div class="modal-overlay" id="specsModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <h3 class="modal-title" id="mTitle">ROHS AIO Desktop</h3>
+                <div class="modal-subtitle" id="mCpu">Intel Core i9 11th Gen</div>
+            </div>
+            <div class="modal-grid">
+                <div class="modal-spec-item">
+                    <div class="modal-spec-label">Form Factor</div>
+                    <div class="modal-spec-value">All-In-One (AIO)</div>
+                </div>
+                <div class="modal-spec-item">
+                    <div class="modal-spec-label">Display Size</div>
+                    <div class="modal-spec-value" id="mScreen">24" Full HD</div>
+                </div>
+                <div class="modal-spec-item">
+                    <div class="modal-spec-label">RAM Memory</div>
+                    <div class="modal-spec-value" id="mRam">16GB DDR4</div>
+                </div>
+                <div class="modal-spec-item">
+                    <div class="modal-spec-label">Storage Capacity</div>
+                    <div class="modal-spec-value" id="mStorage">256GB / 512GB SSD</div>
+                </div>
+                <div class="modal-spec-item">
+                    <div class="modal-spec-label">Shop Vendor</div>
+                    <div class="modal-spec-value">Technolink</div>
+                </div>
+                <div class="modal-spec-item">
+                    <div class="modal-spec-label">Listed Price</div>
+                    <div class="modal-spec-value" style="color: var(--accent)" id="mPrice">6,500 ฿</div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-inquire" onclick="handleInquiry()">Inquire Shop Item</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="brand">
+                    <div class="brand-logo">T</div>
+                    <div class="brand-name">Techno<span>link</span></div>
+                </div>
+                <p>Your trusted hardware tech store offering premium All-In-One PCs, modern computer systems, and full desktop solutions.</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0.75rem;">Shop Details</h4>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                    <strong>Model Series:</strong> ROHS AIO<br>
+                    <strong>Currency:</strong> Thai Baht (฿ THB)<br>
+                    <strong>Design Type:</strong> Slim All-In-One Chassis
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 Technolink. All rights reserved.</div>
+            <div>ROHS All-In-One Series Catalogue</div>
+        </div>
+    </footer>
+
+    <!-- Application Script -->
+    <script>
+        // Data Source
+        const productsData = [
+            {
+                id: 1,
+                name: "ROHS AIO Desktop",
+                cpu: "Intel Core i9 11th Gen",
+                genTag: "i9",
+                ram: "16GB DDR4",
+                storage: "256GB / 512GB SSD",
+                screen: '24"',
+                price: 6500,
+                badge: "Top Performance",
+                type: "High-End Workstation"
+            },
+            {
+                id: 2,
+                name: "ROHS AIO Desktop",
+                cpu: "Intel Core i7 11th Gen",
+                genTag: "i7",
+                ram: "16GB DDR4",
+                storage: "256GB / 512GB SSD",
+                screen: '24"',
+                price: 5500,
+                badge: "Popular Choice",
+                type: "Mainstream Pro"
+            },
+            {
+                id: 3,
+                name: "ROHS AIO Desktop",
+                cpu: "Intel Core i7 10th Gen",
+                genTag: "i7",
+                ram: "16GB DDR4",
+                storage: "256GB SSD",
+                screen: '24"',
+                price: 4500,
+                badge: "Best Value",
+                type: "Business Edition"
+            },
+            {
+                id: 4,
+                name: "ROHS AIO Desktop",
+                cpu: "Intel Core i7 9th Gen (Desktop CPU)",
+                genTag: "i7",
+                ram: "16GB DDR3",
+                storage: "256GB SSD",
+                screen: '24"',
+                price: 4700,
+                badge: "Desktop Power",
+                type: "Desktop CPU Variant"
+            },
+            {
+                id: 5,
+                name: "ROHS AIO Desktop",
+                cpu: "Intel Core i5 7th Gen",
+                genTag: "i5",
+                ram: "16GB DDR3",
+                storage: "256GB SSD",
+                screen: '24"',
+                price: 3500,
+                badge: "Budget Friendly",
+                type: "Essential Office"
+            }
+        ];
+
+        // State Management
+        let currentProducts = [...productsData];
+        let activeFilter = 'all';
+        let searchQuery = '';
+        let currentSort = 'featured';
+
+        // DOM Elements
+        const grid = document.getElementById('products');
+        const tableBody = document.getElementById('tableBody');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sortSelect = document.getElementById('sortSelect');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const modal = document.getElementById('specsModal');
+        const modalClose = document.getElementById('modalClose');
+
+        // Render Functions
+        function renderCards(data) {
+            if (data.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-secondary);">No matching ROHS AIO desktop configurations found.</div>`;
+                return;
+            }
+
+            grid.innerHTML = data.map(item => `
+                <div class="product-card glass">
+                    <div class="card-banner">
+                        <div class="card-badge">${item.badge}</div>
+                        <div class="aio-illustration">
+                            <div class="aio-screen">
+                                <div class="aio-wallpaper"></div>
+                            </div>
+                            <div class="aio-stand"></div>
+                            <div class="aio-base"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="product-title">${item.name}</h3>
+                        <span class="processor-tag">${item.cpu}</span>
+                        <ul class="specs-list">
+                            <li class="specs-item">
+                                <svg class="specs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                                <span><strong>Display:</strong> ${item.screen} Screen</span>
+                            </li>
+                            <li class="specs-item">
+                                <svg class="specs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M6 19v-3M10 19v-6M14 19v-4M18 19v-8"></path>
+                                </svg>
+                                <span><strong>Memory:</strong> ${item.ram}</span>
+                            </li>
+                            <li class="specs-item">
+                                <svg class="specs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                    <path d="M21 19c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                </svg>
+                                <span><strong>Storage:</strong> ${item.storage}</span>
+                            </li>
+                        </ul>
+                        <div class="card-footer">
+                            <div class="price-container">
+                                <span class="price-label">Price</span>
+                                <span class="price-val">${item.price.toLocaleString()} <span>฿</span></span>
+                            </div>
+                            <button class="btn-details" onclick="openModal(${item.id})">Specs View</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTable(data) {
+            tableBody.innerHTML = data.map(item => `
+                <tr>
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.cpu}</td>
+                    <td>${item.ram}</td>
+                    <td>${item.storage}</td>
+                    <td>${item.screen}</td>
+                    <td class="price-td">${item.price.toLocaleString()} ฿</td>
+                </tr>
+            `).join('');
+        }
+
+        // Filtering and Sorting Logic
+        function updateDisplay() {
+            let filtered = productsData.filter(item => {
+                const matchesFilter = activeFilter === 'all' || item.genTag === activeFilter;
+                const matchesSearch = item.cpu.toLowerCase().includes(searchQuery) ||
+                                      item.ram.toLowerCase().includes(searchQuery) ||
+                                      item.storage.toLowerCase().includes(searchQuery) ||
+                                      item.price.toString().includes(searchQuery);
+                return matchesFilter && matchesSearch;
+            });
+
+            if (currentSort === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (currentSort === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
+
+            renderCards(filtered);
+            renderTable(filtered);
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            updateDisplay();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                updateDisplay();
+            });
+        });
+
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            updateDisplay();
+        });
+
+        // Theme Toggle
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Mobile Menu
+        function toggleMenu() {
+            mobileDrawer.classList.toggle('active');
+        }
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // Modal Functions
+        let activeProduct = null;
+
+        function openModal(id) {
+            activeProduct = productsData.find(p => p.id === id);
+            if (!activeProduct) return;
+
+            document.getElementById('mTitle').textContent = activeProduct.name;
+            document.getElementById('mCpu').textContent = activeProduct.cpu;
+            document.getElementById('mScreen').textContent = activeProduct.screen + ' Display';
+            document.getElementById('mRam').textContent = activeProduct.ram;
+            document.getElementById('mStorage').textContent = activeProduct.storage;
+            document.getElementById('mPrice').textContent = activeProduct.price.toLocaleString() + ' ฿';
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        function handleInquiry() {
+            if (activeProduct) {
+                const message = `Hello Technolink, I am interested in the ${activeProduct.name} (${activeProduct.cpu}) priced at ${activeProduct.price.toLocaleString()} THB.`;
+                navigator.clipboard.writeText(message);
+                alert(`Inquiry details copied to clipboard!\n\n"${message}"`);
+            }
+        }
+
+        // Initial Initialization
+        updateDisplay();
+    </script>
+</body>
+</html>
